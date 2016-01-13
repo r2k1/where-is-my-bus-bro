@@ -1,1 +1,1 @@
-Timetable = new Mongo.Collection('timetable');
+Vehicles = new Mongo.Collection('vehicles');

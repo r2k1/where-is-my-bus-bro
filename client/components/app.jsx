@@ -4,9 +4,9 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
-          <h1>Timetable</h1>
+          <h1>Where is my bus, bro?</h1>
         </header>
-        <StopTimetable />
+        <LiveMap />
       </div>
     );
   }

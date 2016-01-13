@@ -1,3 +1,3 @@
-Meteor.publish('timetable', function() {
-  return Timetable.find();
+Meteor.publish('vehicles', function() {
+  return Vehicles.find();
 });
