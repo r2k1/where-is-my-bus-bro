@@ -1,3 +1,15 @@
+var iconHtml = `
+<div class="bus-marker__container">
+  <span class='bus-marker__icon fa-stack fa-lg'>
+    <i class='fa fa-circle fa-stack-2x'></i>
+    <i class='fa fa-bus fa-stack-1x fa-inverse'></i>
+  </span>
+  <span class="bus-marker__number">123</span>
+</div>
+`;
+
+var busIcon = L.divIcon({className: 'bus-marker', html: iconHtml});
+
 LiveMap = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
@@ -18,11 +30,7 @@ LiveMap = React.createClass({
     var markers = {};
     this.data.vehicles.observe({
       added(vehicle) {
-        var marker = L.circle([vehicle.lat, vehicle.lon], 5, {
-          color: 'red',
-          fillColor: '#f03',
-          fillOpacity: 0.5
-        }).addTo(map);
+        var marker = L.marker([vehicle.lat, vehicle.lon], {icon: busIcon}).addTo(map);
         markers[vehicle._id] = marker;
       },
       removed(vehicle) {

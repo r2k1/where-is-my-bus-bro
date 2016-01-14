@@ -4,7 +4,6 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
-          <h1>Where is my bus, bro?</h1>
         </header>
         <LiveMap />
       </div>

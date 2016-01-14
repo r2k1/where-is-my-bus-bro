@@ -1,0 +1,32 @@
+$bus-marker_width: 80px;
+$bus-marker_heigh: 40px;
+.bus-marker {
+  width: $bus-marker_width !important;
+  height: $bus-marker_heigh !important;
+  margin-left: -$bus-marker_width/2 !important;
+  margin-top: -$bus-marker_heigh/2 !important;
+}
+
+.bus-marker__container {
+  position: relative;
+  font-size: 16px;
+}
+
+.bus-marker__number {
+  background-color: white;
+  position: absolute;
+  width: 3.3em;
+  padding-left: 0.3em;
+  top: 0.333em;
+  height: 2em;
+  line-height: 2em;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.bus-marker__icon {
+  position: absolute;
+  left: 2rem;
+  z-index: 2;
+  color: #393939;
+}

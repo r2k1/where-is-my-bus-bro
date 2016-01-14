@@ -1,17 +1,8 @@
 @import 'reset';
+@import 'bus-marker';
 
 .live-map {
   height: 100%;
   width: 100%;
   position: absolute !important;
-}
-
-.bus-icon {
-  width: 80px !important;
-  height: 43px !important;
-  margin-left: -40px !important;
-  margin-top: -22px !important;
-  font-size: 1rem;
-  color: #3F51B5;
-  /*background-color: black;*/
 }
