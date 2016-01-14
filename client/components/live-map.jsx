@@ -1,17 +1,22 @@
-var iconHtml = `
-<div class="bus-marker__container">
-  <span class='bus-marker__icon fa-stack fa-lg'>
-    <i class='fa fa-circle fa-stack-2x'></i>
-    <i class='fa fa-bus fa-stack-1x fa-inverse'></i>
-  </span>
-  <span class="bus-marker__number">123</span>
-</div>
-`;
-
-var busIcon = L.divIcon({className: 'bus-marker', html: iconHtml});
-
 LiveMap = React.createClass({
   mixins: [ReactMeteorData],
+  busMarker(vehicle) {
+    return L.marker([vehicle.lat, vehicle.lon], {icon: this.icon(vehicle.route_short_name)});
+  },
+  icon(name) {
+    let html = `
+    <div class="bus-marker__container">
+      <span class='bus-marker__icon fa-stack fa-lg'>
+        <i class='fa fa-circle fa-stack-2x'></i>
+        <i class='fa fa-bus fa-stack-1x fa-inverse'></i>
+      </span>
+      <span class="bus-marker__number">` + name + `
+        </span>
+        </div>
+        `;
+    return  L.divIcon({className: 'bus-marker', html: html});
+  },
+
   getMeteorData() {
     Meteor.subscribe('vehicles');
     return {
@@ -28,9 +33,10 @@ LiveMap = React.createClass({
       ]
     });
     var markers = {};
+    var busMarker = this.busMarker;
     this.data.vehicles.observe({
       added(vehicle) {
-        var marker = L.marker([vehicle.lat, vehicle.lon], {icon: busIcon}).addTo(map);
+        var marker = busMarker(vehicle).addTo(map);
         markers[vehicle._id] = marker;
       },
       removed(vehicle) {
