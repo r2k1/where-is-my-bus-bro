@@ -15,21 +15,23 @@ LiveMap = React.createClass({
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
       ]
     });
-    markers = {};
+    var markers = {};
     this.data.vehicles.observe({
       added(vehicle) {
-        console.log('added');
         var marker = L.circle([vehicle.lat, vehicle.lon], 5, {
           color: 'red',
           fillColor: '#f03',
           fillOpacity: 0.5
         }).addTo(map);
-        markers[vehicle.id] = marker;
+        markers[vehicle._id] = marker;
       },
       removed(vehicle) {
-        console.log('removed');
         var marker = markers[vehicle._id];
         map.removeLayer(marker);
+      },
+      changed(vehicle) {
+        var marker = markers[vehicle._id];
+        marker.setLatLng([vehicle.lat, vehicle.lon]);
       }
 
     });
