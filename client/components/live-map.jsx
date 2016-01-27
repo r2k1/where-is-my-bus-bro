@@ -1,5 +1,15 @@
 LiveMap = React.createClass({
   mixins: [ReactMeteorData],
+  propTypes: {
+    center: React.PropTypes.array
+  },
+
+  getDefaultProps() {
+    return {
+      center: [-36.8511764,174.7721285]
+    };
+  },
+
   busMarker(vehicle) {
     return L.marker([vehicle.lat, vehicle.lon], {icon: this.icon(vehicle.route_short_name)});
   },
@@ -26,12 +36,13 @@ LiveMap = React.createClass({
 
   componentDidMount() {
     var map = this.map = L.map(ReactDOM.findDOMNode(this),{
-      center: [-36.8511764,174.7721285],
+      center: this.props.center,
       zoom: 17,
       layers: [
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
       ]
     });
+    map.locate({watch: true, setView: true});
     var markers = {};
     var busMarker = this.busMarker;
     this.data.vehicles.observe({
