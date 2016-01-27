@@ -42,7 +42,7 @@ LiveMap = React.createClass({
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
       ]
     });
-    map.locate({watch: true, setView: true});
+    map.locate({setView: true});
     var markers = {};
     var busMarker = this.busMarker;
     this.data.vehicles.observe({
