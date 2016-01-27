@@ -5,6 +5,7 @@ $bus-marker_heigh: 40px;
   height: $bus-marker_heigh !important;
   margin-left: -$bus-marker_width/2 !important;
   margin-top: -$bus-marker_heigh/2 !important;
+  transition: transform 2s;
 }
 
 .bus-marker__container {
