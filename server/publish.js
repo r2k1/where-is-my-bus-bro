@@ -1,3 +1,3 @@
 Meteor.publish('vehicles', function() {
-  return Vehicles.find();
+  return Vehicles.find({}, {limit: 10});
 });
